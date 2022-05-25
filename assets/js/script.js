@@ -3,6 +3,7 @@ var timerEl = document.querySelector(".timer-count");
 var timer;
 var timerCount;
 var timerInterval;
+var score = document.querySelector("#score");
 
 // start button
 var start= document.querySelector(".start-button");
@@ -11,7 +12,7 @@ var start= document.querySelector(".start-button");
 var starterIns= document.querySelector("#starter-box");
 
 // Questions
-var questionsEl= document.querySelector("#questions-container");
+var questionsEl= document.querySelector("#question-container");
 var question= document.querySelector("#question");
 var questionCount = 0;
 
@@ -94,10 +95,27 @@ function setQuestion(id) {
     }
 }
 
+function answerCheck()
+
+function addScore(event) {
+    event.preventDefault();
+
+}
 
 
 // Event listeners
 
-start.addEventListener("click", startQuiz);
+start.addEventListener('click', startQuiz);
 
-answerButton.forEach(item => {})
+answerButton.forEach(item => {
+    item.addEventListener("click", answerCheck);
+});
+
+submitScoreButton.addEventListener("click", addScore);
+
+goBackButton.addEventListener("click", function(){
+    highScoresEl.style.display = "none";
+    starterIns.style.display = "block";
+    timerCount = 45;
+    timerEl.textContent =
+})

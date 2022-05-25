@@ -13,25 +13,25 @@
         <button id="high-scores-view">High Scores</button>
         <h1>The Almighty Java Quiz</h1>
         <div class="timer">
-            <h2 class="timer-count">TIMER</h2>
+            <h2 class="timer-count">timer</h2>
         </div>
         
     </header>
 
     <main>
-        <section id="starter-box" class="Shown" >
+        <section id="starter-box">
             <h3> Rules of the Game</h3>
             <p>Here we will test your knowledge on some JavaScript fundamentals. The rules of the game are simple... once you hit the start button below, you will have 45 seconds
                 to answer the questions displayed on screen. Each correct answer is worth 5 points. However, if you answer the question wrong, the timer will be reduced by 4 seconds.
                 Get as many points as you can before the time runs out and see your name on the top of the leaderboard! 
             </p>
-            <button class="start-button">Start Quiz</button>
+            <button type="button" class="start-button">Start Quiz</button>
         </section>
 
         <!-- HIDDEN PARTS BEFORE QUIZ START -->
-        <section id="question-container" class="hidden">
+        <section id="question-container" class="questionsAll">
             <div class="questions-list">
-                <ul>
+                <ul class="questions-ul">
                     <h3 id="question">Question??</h3>
                     <li> <button id="answer-1" type="button" class="answer-button">answer-option-1</button></li>
                     <li> <button id="answer-2" type="button" class="answer-button">answer-option-2</button></li>
@@ -42,7 +42,7 @@
         </section>
 
         <!-- Final Score and Form Input -->
-        <section id="final-score-container" class="hidden">
+        <section id="final-score-container" class="score-container">
             <div>
                 <h3>Game Complete!!</h3>
                 <p>Your Final Score is: <span id="finalscore">0</span></p>
@@ -54,7 +54,7 @@
             </div>
         </section>
 
-        <section id="high-scores-container" class="hidden">
+        <section id="high-scores-container" class="score-container1">
             <div>
                 <h3>High Scores</h3>
                 <ol id="high-score-list"></ol>
