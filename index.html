@@ -10,40 +10,39 @@
 
 <body>
     <header>
+        <h2 id="high-scores-view">High Scores</h2>
         <h1>The Almighty Java Quiz</h1>
-        <h2>High Scores</h2>
+        <div class="timer">
+            <h2 class="timer-count">Time: 45</div>
+        </div>
+        
     </header>
 
     <main>
         <section id="starter-box" class="Shown" >
             <h3> Rules of the Game</h3>
-            <p>Here we will test your knowledge on some JavaScript fundamentals. The rules of the game are simple... once you hit the start button below, you will have 30 seconds
+            <p>Here we will test your knowledge on some JavaScript fundamentals. The rules of the game are simple... once you hit the start button below, you will have 45 seconds
                 to answer the questions displayed on screen. Each correct answer is worth 5 points. However, if you answer the question wrong, the timer will be reduced by 4 seconds.
                 Get as many points as you can before the time runs out and see your name on the top of the leaderboard! 
             </p>
             <button class="start-button">Start Quiz</button>
         </section>
 
-        <section>
-            <div class="timer-card">
-                <div class="timer-count"></div>
-                <div class="timer-text"></div>
-            </div>
-        </section>
-
         <!-- HIDDEN PARTS BEFORE QUIZ START -->
         <section id="question-container" class="hidden">
             <div class="questions-list">
                 <ul>
-                    <li> <button class="answer-button">answer-option-1</button></li>
-                    <li> <button class="answer-button">answer-option-2</button></li>
-                    <li> <button class="answer-button">answer-option-3</button></li>
-                    <li> <button class="answer-button">answer-option-4</button></li>
+                    <h3 id="question">Question??</h3>
+                    <li> <button id="answer-1" type="button" class="answer-button">answer-option-1</button></li>
+                    <li> <button id="answer-2" type="button" class="answer-button">answer-option-2</button></li>
+                    <li> <button id="answer-3" type="button" class="answer-button">answer-option-3</button></li>
+                    <li> <button id="answer-4" type="button" class="answer-button">answer-option-4</button></li>
                 </ul>
             </div>
         </section>
 
-        <section id="final-score" class="hidden">
+        <!-- Final Score and Form Input -->
+        <section id="final-score-container" class="hidden">
             <div>
                 <h3>Game Complete!!</h3>
                 <p>Your Final Score is: <span id="finalscore">0</span></p>
@@ -64,7 +63,7 @@
             </div>
         </section>
     </main>
-    
+
     <script src="./assets/js/script.js"></script>
 </body>
 </html>

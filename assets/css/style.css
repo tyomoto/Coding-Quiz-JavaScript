@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    background-color: beige;
+    font-family: Arial;
+}
+
+main {
+    margin: 0;
+    display: flex;
+    color
+}
+/* Header (Includes: High Scores, Title, Timer */
+header {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 15px;
+    padding: 10px;
+    align-content: center;
+}
+
+.timer{
+    display: inline;
+    text-align: right;
+}
+#high-scores-view{
+    text-align: left;
+}
+
+/* Starting Instructions and Start Button */
+#starter-box{
+    text-align: center;
+}
+
+
+.shown{
+    display:flex;
+}
+
+.hidden{
+    display: none;
+}
