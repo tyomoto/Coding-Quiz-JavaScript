@@ -3,10 +3,10 @@ var timerEl = document.querySelector(".timer-count");
 var timer;
 var timerCount;
 var timerInterval;
-var score = document.querySelector("#score");
+var score = document.querySelector("#finalscore");
 
 // start button
-var start= document.querySelector(".start-button");
+var start= document.querySelector("#start-button");
 
 // Starter Instructions
 var starterIns= document.querySelector("#starter-box");
@@ -24,7 +24,7 @@ var answer3btn = document.querySelector("#answer-3");
 var answer4btn = document.querySelector("#answer-4");
 
 // Final Score Screen + Submitting Score
-var finalscore = document.querySelector("#final-score");
+var finalscore = document.querySelector("#final-score-container");
 var initialsinput = document.querySelector(".initials-text");
 var submitScoreButton = document.querySelector("#submit-score");
 
@@ -33,6 +33,7 @@ var submitScoreButton = document.querySelector("#submit-score");
 var highScoresEl = document.querySelector("#high-scores-container");
 var scoreListEl = document.querySelector("#high-score-list");
 var scoreList = [];
+var highScoresViewBtn = document.querySelector("high-scores-view");
 var clearScoreButton = document.querySelector("#clear-scores");
 var goBackButton = document.querySelector("#back-to-game");
 
@@ -55,10 +56,9 @@ var questions = [
     answers: ["A) console.record()", "B) console.write()", "C) console.log()", "D) console.output()"],
     correct: 3
     }
+];
 
-]
-
-// Begin quiz 
+// Start Quiz Function
 function startQuiz(){
 timerCount = 45;
 starterIns.style.display = "none";
@@ -74,13 +74,12 @@ function startTimer(){
     timerInterval = setInterval(function(){
         timerCount--;
         timerEl.textContent = timerCount + "s remaining";
-        if (timerCount === 0){
+        if (timerCount === 0 || questionCount === questions.length){
             clearInterval(timerInterval);
             questionsEl.style.display = "none";
             finalscore.style.display = "block";
             score.textContent = timerCount;
         }
-
     }, 1000);
 }
 
@@ -95,19 +94,66 @@ function setQuestion(id) {
     }
 }
 
-function answerCheck()
+function answerCheck(event){
+    event.preventDefault();
+    if (questions[questionCount].correct !== event.target.value){
+        timerCount = timerCount - 4;
+    }
+    if (questionCount < questions.length){
+        questionCount++;
+    }
+    setQuestion(questionCount)
+}
 
 function addScore(event) {
     event.preventDefault();
+    finalscore.style.display = "none";
+    highScoresEl.style.display = "block";
 
+    scoreList.push({initials: initialsinput.value, score: timerCount });
+
+    scoreList = scoreList.sort(function(a,b){
+        if (a.score < b.score) {
+            return 1;  
+        } else {
+            return -1;
+        }
+    });
+    scoreListEl.innerHTML="";
+    for (let i = 0; i < scoreList.length; i++) {
+        let li = document.createElement("li");
+        li.textContent = `${scoreList[i].initials}: ${scoreList[i].score}`;
+        scoreListEl.append(li);
+    }
+
+    storeScores();
+    displayScores();
 }
 
+// Stores the scores in local storage
+function storeScores() {
+    localStorage.setItem("scoreList", JSON.stringify(scoreList));
+}
+
+// Display the Scores once stored, parse as object
+function displayScores() {
+    var storedscoreList = JSON.parse(localStorage.getItem("scoreList"));
+    if (storedscoreList !== null){
+        scoreList = storedscoreList
+    }
+}
+
+// Function to clear all the stored Scores
+function clearScores() {
+    localStorage.clear();
+    scoreListEl.innerHTML="";
+}
 
 // Event listeners
 
-start.addEventListener('click', startQuiz);
+start.addEventListener("click", startQuiz);
 
-answerButton.forEach(item => {
+answerButton.forEach(function(item) {
     item.addEventListener("click", answerCheck);
 });
 
@@ -117,5 +163,17 @@ goBackButton.addEventListener("click", function(){
     highScoresEl.style.display = "none";
     starterIns.style.display = "block";
     timerCount = 45;
-    timerEl.textContent =
-})
+    timerEl.textContent = timerCount + "s remaining";
+});
+
+// !!!!!!TROUBLESHOOT !!!!!!
+
+// highScoresViewBtn.addEventListener("click", function () {
+//     if (highscoresEl.style.display === "none") {
+//         highscoresEl.style.display = "block";
+//     } 
+//     else if (highscoresEl.style.display === "block") {
+//         highscoresEl.style.display = "none";
+//     } 
+    
+// });
