@@ -9,7 +9,6 @@ body {
 main {
     margin: 0;
     display: flex;
-    color
 }
 /* Header (Includes: High Scores, Title, Timer */
 header {
@@ -70,7 +69,7 @@ section div{
 }
 .questions-list{
     justify-content: start;
-    display: grid;
+    /* display: grid; */
     grid-template-rows: 1fr, 2fr, 1fr;
     grid-auto-rows: (10px, auto);
     grid-gap: 1px;
@@ -93,6 +92,10 @@ button{
     height: 50px;
 }
 
-#final-score-container, #question-container, #high-scores-container {
+#final-score-container, #high-scores-container, #question-container {
 display: none;
 }
+
+/* #question-container {
+    display: block;
+} */

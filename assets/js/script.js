@@ -33,8 +33,7 @@ var submitScoreButton = document.querySelector("#submit-score");
 var highScoresEl = document.querySelector("#high-scores-container");
 var scoreListEl = document.querySelector("#high-score-list");
 var scoreList = [];
-var highScoresViewBtn = document.querySelector("high-scores-view");
-var clearScoreButton = document.querySelector("#clear-scores");
+var highScoresViewBtn = document.querySelector("#high-scores-view");
 var goBackButton = document.querySelector("#back-to-game");
 
 // Questions + Answers List
@@ -60,6 +59,7 @@ var questions = [
 
 // Start Quiz Function
 function startQuiz(){
+    console.log("clicked start");
 timerCount = 45;
 starterIns.style.display = "none";
 questionsEl.style.display = "block";
@@ -85,8 +85,11 @@ function startTimer(){
 
 // Keeptrack of questions length and count
 function setQuestion(id) {
+    console.log(questions[id].question);
+    console.log(questions[id].answers[0]);
+    console.log(questions.length);
     if (id < questions.length){
-        questionsEl.textContent = questions[id].question;
+        question.textContent = questions[id].question;
         answer1btn.textContent = questions[id].answers[0];
         answer2btn.textContent = questions[id].answers[1];
         answer3btn.textContent = questions[id].answers[2];
@@ -143,11 +146,6 @@ function displayScores() {
     }
 }
 
-// Function to clear all the stored Scores
-function clearScores() {
-    localStorage.clear();
-    scoreListEl.innerHTML="";
-}
 
 // Event listeners
 
@@ -159,6 +157,7 @@ answerButton.forEach(function(item) {
 
 submitScoreButton.addEventListener("click", addScore);
 
+
 goBackButton.addEventListener("click", function(){
     highScoresEl.style.display = "none";
     starterIns.style.display = "block";
@@ -166,14 +165,10 @@ goBackButton.addEventListener("click", function(){
     timerEl.textContent = timerCount + "s remaining";
 });
 
-// !!!!!!TROUBLESHOOT !!!!!!
 
-// highScoresViewBtn.addEventListener("click", function () {
-//     if (highscoresEl.style.display === "none") {
-//         highscoresEl.style.display = "block";
-//     } 
-//     else if (highscoresEl.style.display === "block") {
-//         highscoresEl.style.display = "none";
-//     } 
+highScoresViewBtn.addEventListener("click", function () {
+    // console.log(highScoresEl);
+    highScoresEl.setAttribute("style", "display:block");
+    starterIns.setAttribute("style", "display:none");
     
-// });
+});
